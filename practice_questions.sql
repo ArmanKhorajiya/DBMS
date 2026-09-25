@@ -75,6 +75,7 @@
 -- from students s
 -- join enrollments e
 -- on s.student_id=e.student_id
+-- where e.marks>80
 
 -- Q18
 -- select
@@ -106,10 +107,98 @@
 -- having count(e.student_id)>3
 
 -- Q21
-select
-c.course_name,
-max(e.marks) as Highest_Marks
-from courses c
-join enrollments e
-on c.course_id=e.course_id
-group by c.course_name,c.course_id
+-- select
+-- c.course_name,
+-- max(e.marks) as Highest_Marks
+-- from courses c
+-- join enrollments e
+-- on c.course_id=e.course_id
+-- group by c.course_name,c.course_id
+
+-- Q22
+-- select
+-- c.course_name,
+-- min(e.marks) as Lowest_Marks
+-- from courses c
+-- join enrollments e
+-- on c.course_id=e.course_id
+-- group by c.course_name,c.course_id
+
+-- Q23
+-- select student_id,avg(marks) from enrollments
+-- group by student_id
+
+-- Q24
+-- select student_id,avg(marks) from enrollments
+-- group by student_id
+-- having avg(marks)>70
+
+-- Q25
+-- select student_id,marks,course_id from enrollments
+-- where marks>80
+
+-- Q26
+-- select student_id,sum(marks) as Total from enrollments
+-- group by student_id
+
+-- Q27
+-- select department, count(student_id) as Total from students
+-- group by department
+-- order by count(student_id) desc
+-- limit 1
+
+-- Q28
+-- select course_id, count(enrollment_id) as Total from enrollments
+-- group by course_id
+-- order by Total desc
+-- limit 1
+
+-- Q29
+-- select 
+-- s.student_id,
+-- s.name
+-- from students s
+-- left join enrollments e
+-- on s.student_id=e.student_id
+-- where e.student_id is null-- 
+
+-- Q30
+-- select
+-- s.name,
+-- c.course_name,
+-- e.marks,
+-- case
+-- when e.marks>=40 then 'Pass'
+-- else 'Fail'
+-- end as result
+-- from students s
+-- join enrollments e
+-- on s.student_id=e.student_id
+-- join courses c
+-- on c.course_id=e.course_id
+
+-- Q31
+-- select marks from enrollments
+-- where marks < (
+-- 	select max(marks) from enrollments
+-- )
+-- limit 1
+
+-- Q32
+-- select 
+-- s.name,
+-- max(e.marks) as Highest
+-- from enrollments e
+-- join students s
+-- on s.student_id=e.student_id
+-- group by s.name
+-- order by Highest desc
+-- limit 1
+
+-- Q33
+select course_id, avg(marks) from enrollments
+-- group by course_id
+-- order by avg(marks) desc
+-- limit 1
+
+-- Q34
