@@ -202,3 +202,356 @@ select course_id, avg(marks) from enrollments
 -- limit 1
 
 -- Q34
+
+
+-- Q1
+-- Display all students from the Students table.
+-- SELECT *
+-- FROM Students;
+
+
+-- Q2
+-- Display the names of all students who belong to the Computer Science department.
+-- SELECT name
+-- FROM Students
+-- WHERE department = 'Computer Science';
+
+
+-- Q3
+-- Find all students who live in Ahmedabad.
+-- SELECT *
+-- FROM Students
+-- WHERE city = 'Ahmedabad';
+
+
+-- Q4
+-- Display all courses having more than 3 credits.
+-- SELECT *
+-- FROM Courses
+-- WHERE credits > 3;
+
+
+-- Q5
+-- Find students who were admitted in 2024.
+-- SELECT *
+-- FROM Students
+-- WHERE admission_year = 2024;
+
+
+-- Q6
+-- Display all enrollments where the marks are greater than 70.
+-- SELECT *
+-- FROM Enrollments
+-- WHERE marks > 70;
+
+
+-- Q7
+-- Find the highest marks obtained in the Enrollments table.
+-- SELECT MAX(marks) AS highest_marks
+-- FROM Enrollments;
+
+
+-- Q8
+-- Find the lowest marks obtained in the Enrollments table.
+-- SELECT MIN(marks) AS lowest_marks
+-- FROM Enrollments;
+
+
+-- Q9
+-- Find the average marks of all students.
+-- SELECT AVG(marks) AS average_marks
+-- FROM Enrollments;
+
+
+-- Q10
+-- Find the total number of students.
+-- SELECT COUNT(*) AS total_students
+-- FROM Students;
+
+
+-- Q11
+-- Find the total number of courses.
+-- SELECT COUNT(*) AS total_courses
+-- FROM Courses;
+
+
+-- Q12
+-- Find the number of students in each department.
+-- SELECT department, COUNT(*) AS student_count
+-- FROM Students
+-- GROUP BY department;
+
+
+-- Q13
+-- Find the average marks obtained in each course.
+-- SELECT course_id, AVG(marks) AS average_marks
+-- FROM Enrollments
+-- GROUP BY course_id;
+
+
+-- Q14
+-- Find the number of students enrolled in each course.
+-- SELECT course_id, COUNT(DISTINCT student_id) AS student_count
+-- FROM Enrollments
+-- GROUP BY course_id;
+
+
+-- Q15
+-- Find students who scored between 60 and 80 marks.
+-- SELECT *
+-- FROM Enrollments
+-- WHERE marks BETWEEN 60 AND 80;
+
+
+-- Q16
+-- Display the student name, course name, and marks for every enrollment.
+-- SELECT s.name AS student_name,
+--        c.course_name,
+--        e.marks
+-- FROM Enrollments e
+-- JOIN Students s
+-- ON e.student_id = s.student_id
+-- JOIN Courses c
+-- ON e.course_id = c.course_id;
+
+
+-- Q17
+-- Find all students who have scored more than 80 marks.
+-- SELECT DISTINCT s.*
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.marks > 80;
+
+
+-- Q18
+-- Find students who have scored less than 40 marks in any course.
+-- SELECT DISTINCT s.*
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.marks < 40;
+
+
+-- Q19
+-- Find students who have enrolled in more than 2 courses.
+-- SELECT student_id, COUNT(DISTINCT course_id) AS course_count
+-- FROM Enrollments
+-- GROUP BY student_id
+-- HAVING COUNT(DISTINCT course_id) > 2;
+
+
+-- Q20
+-- Find courses having more than 3 enrolled students.
+-- SELECT course_id, COUNT(DISTINCT student_id) AS enrolled_students
+-- FROM Enrollments
+-- GROUP BY course_id
+-- HAVING COUNT(DISTINCT student_id) > 3;
+
+
+-- Q21
+-- Find the highest marks obtained in each course.
+-- SELECT course_id, MAX(marks) AS highest_marks
+-- FROM Enrollments
+-- GROUP BY course_id;
+
+
+-- Q22
+-- Find the lowest marks obtained in each course.
+-- SELECT course_id, MIN(marks) AS lowest_marks
+-- FROM Enrollments
+-- GROUP BY course_id;
+
+
+-- Q23
+-- Find the average marks of each student.
+-- SELECT student_id, AVG(marks) AS average_marks
+-- FROM Enrollments
+-- GROUP BY student_id;
+
+
+-- Q24
+-- Display students whose average marks are greater than 70.
+-- SELECT student_id, AVG(marks) AS average_marks
+-- FROM Enrollments
+-- GROUP BY student_id
+-- HAVING AVG(marks) > 70;
+
+
+-- Q25
+-- Find students who have scored above 80 in at least one course.
+-- SELECT DISTINCT s.*
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.marks > 80;
+
+
+-- Q26
+-- Find the total marks obtained by each student.
+-- SELECT student_id, SUM(marks) AS total_marks
+-- FROM Enrollments
+-- GROUP BY student_id;
+
+
+-- Q27
+-- Find the department having the highest number of students.
+-- SELECT department, COUNT(*) AS student_count
+-- FROM Students
+-- GROUP BY department
+-- ORDER BY student_count DESC
+-- LIMIT 1;
+
+
+-- Q28
+-- Find the course having the highest number of enrollments.
+-- SELECT course_id, COUNT(*) AS enrollment_count
+-- FROM Enrollments
+-- GROUP BY course_id
+-- ORDER BY enrollment_count DESC
+-- LIMIT 1;
+
+
+-- Q29
+-- Find students who are not enrolled in any course.
+-- SELECT s.*
+-- FROM Students s
+-- LEFT JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.student_id IS NULL;
+
+
+-- Q30
+-- Display Student Name, Course Name, Marks, and Result.
+-- Use CASE:
+-- marks >= 40 → Pass
+-- marks < 40 → Fail
+-- SELECT s.name AS student_name,
+--        c.course_name,
+--        e.marks,
+--        CASE
+--            WHEN e.marks >= 40 THEN 'Pass'
+--            ELSE 'Fail'
+--        END AS result
+-- FROM Enrollments e
+-- JOIN Students s
+-- ON e.student_id = s.student_id
+-- JOIN Courses c
+-- ON e.course_id = c.course_id;
+
+
+-- Q31
+-- Find the second-highest marks obtained in the Enrollments table.
+-- SELECT MAX(marks) AS second_highest_marks
+-- FROM Enrollments
+-- WHERE marks < (
+--     SELECT MAX(marks)
+--     FROM Enrollments
+-- );
+
+
+-- Q32
+-- Find the student(s) who obtained the highest marks in the entire database.
+-- SELECT s.name AS student_name,
+--        e.marks
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.marks = (
+--     SELECT MAX(marks)
+--     FROM Enrollments
+-- );
+
+
+-- Q33
+-- Find the course with the highest average marks.
+-- SELECT c.course_id,
+--        c.course_name,
+--        AVG(e.marks) AS average_marks
+-- FROM Courses c
+-- JOIN Enrollments e
+-- ON c.course_id = e.course_id
+-- GROUP BY c.course_id, c.course_name
+-- ORDER BY average_marks DESC
+-- LIMIT 1;
+
+
+-- Q34
+-- Find students whose marks are greater than the overall average marks.
+-- SELECT DISTINCT s.name AS student_name,
+--        e.marks
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.marks > (
+--     SELECT AVG(marks)
+--     FROM Enrollments
+-- );
+
+
+-- Q35
+-- Find students who have enrolled in at least 2 courses
+-- and have an average mark greater than 70.
+-- SELECT s.student_id,
+--        s.name,
+--        COUNT(DISTINCT e.course_id) AS course_count,
+--        AVG(e.marks) AS average_marks
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- GROUP BY s.student_id, s.name
+-- HAVING COUNT(DISTINCT e.course_id) >= 2
+--    AND AVG(e.marks) > 70;
+
+
+-- Q36
+-- Find students who have never scored below 50 in any course.
+-- SELECT s.student_id,
+--        s.name
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- GROUP BY s.student_id, s.name
+-- HAVING MIN(e.marks) >= 50;
+
+
+-- Q37
+-- Find courses where the average marks are greater than 70.
+-- SELECT c.course_id,
+--        c.course_name,
+--        AVG(e.marks) AS average_marks
+-- FROM Courses c
+-- JOIN Enrollments e
+-- ON c.course_id = e.course_id
+-- GROUP BY c.course_id, c.course_name
+-- HAVING AVG(e.marks) > 70;
+
+
+-- Q38
+-- Find the latest enrollment date for each student.
+-- SELECT student_id,
+--        MAX(enrollment_date) AS latest_enrollment_date
+-- FROM Enrollments
+-- GROUP BY student_id;
+
+
+-- Q39
+-- Find students who enrolled in a course during 2025.
+-- SELECT DISTINCT s.*
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.enrollment_date >= '2025-01-01'
+-- AND e.enrollment_date < '2026-01-01';
+
+
+-- Q40
+-- Find students who scored above 80 in at least two different courses.
+-- SELECT s.student_id,
+--        s.name
+-- FROM Students s
+-- JOIN Enrollments e
+-- ON s.student_id = e.student_id
+-- WHERE e.marks > 80
+-- GROUP BY s.student_id, s.name
+-- HAVING COUNT(DISTINCT e.course_id) >= 2;
