@@ -133,9 +133,9 @@
 -- group by city
 
 -- Q35
-select city,count(student_id) as Total from students
-group by city
-having count(student_id)>1
+-- select city,count(student_id) as Total from students
+-- group by city
+-- having count(student_id)>1
 
 -- Q36
 
