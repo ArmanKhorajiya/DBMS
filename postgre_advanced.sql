@@ -58,13 +58,13 @@
 -- limit 1
 
 -- Q7
-select
-s.student_id,
-s.name
-from students s
-join enrollments e
-on s.student_id=e.student_id
-where e.student_id is null
+-- select
+-- s.student_id,
+-- s.name
+-- from students s
+-- join enrollments e
+-- on s.student_id=e.student_id
+-- where e.student_id is null
 
 -- Q8
 -- select
@@ -77,11 +77,11 @@ where e.student_id is null
 -- having avg(e.marks)>85
 
 -- Q9
--- select marks as second_highest_marks from enrollments
--- where marks<(
---     select max(e.marks)
---     from enrollments e
--- )
+select max(marks) as second_highest_marks from enrollments
+where marks<(
+    select max(marks)
+    from enrollments 
+)
 
 -- Q10
 -- select
