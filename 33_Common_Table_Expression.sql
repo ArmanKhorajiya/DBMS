@@ -4,13 +4,102 @@
 --     amount NUMERIC,
 --     year INT
 -- );
-
--- INSERT INTO orders (customer_name, amount, year)
+ -- INSERT INTO orders (customer_name, amount, year)
 -- VALUES
 -- ('Motu', 5000, 2026),
 -- ('Patlu', 8000, 2026),
 -- ('Raju', 3000, 2025),
 -- ('Shyam', 7000, 2026);
-
--- SELECT * FROM orders;
-
+ -- SELECT * FROM orders;
+ -- Q1
+-- with abc as(
+--     select * from orders
+--     where year=2026
+-- )
+-- select * from abc
+ -- Q2
+-- with a as(
+--     select * from orders
+--     where amount>5000
+-- )
+-- select * from a
+ -- Q3
+-- with a as(
+--     select customer_name,amount,(amount*0.18) as tax from orders
+-- )
+-- select * from a
+ -- Q4
+-- with a as
+--     (select sum(amount) as total_order_amount
+--      from orders
+--      group by customer_name)
+-- select *
+-- from a
+ -- Q5
+-- with a as
+--     (select sum(amount) as total_order_amount
+--      from orders
+--      group by customer_name
+--      having sum(amount)>10000)
+-- select * from a
+ -- Q6
+-- with a as
+--     (select avg(amount) as Average
+--      from orders)
+-- select * from a
+ -- Q7
+-- with a as
+--     (select max(amount) as Maximum
+--      from orders)
+-- select * from a
+-- Q8
+-- with a as
+--     (select *
+--      from orders
+--      order by amount desc
+--      limit 3)
+-- select * from a
+ -- Q9
+-- with a as
+--     (select *
+--      from orders),
+-- b as(
+--     select * from a
+--     where amount>5000
+-- )
+-- select * from b
+-- Q10
+-- with a as
+--     (select year,
+--             sum(amount) as Yearly_Sales
+--      from orders
+--      group by year)
+-- select * from a
+-- Q11
+-- with a as(
+--     select customer_name,sum(amount) as total from orders
+--     group by customer_name
+--     having sum(amount)>5000
+-- )
+-- select * from a
+ -- Q12
+-- with customer_total as
+--     (select customer_id,
+--             sum(amount) as total_orders
+--      from orders
+--      group by customer_id)
+-- select c.name,
+--        ct.total_orders
+-- from customers c
+-- join customer_total ct
+-- on c.customer_id=ct.customer_id
+-- Q13
+-- with a as
+--     (select order_id
+--      from orders
+--      where year<2026)
+-- delete
+-- from orders
+-- where order_id in
+--         (select order_id
+--          from a)
