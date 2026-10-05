@@ -4,17 +4,14 @@
 --     course VARCHAR(50),
 --     marks INT
 -- );
-
--- INSERT INTO students (student_name, course, marks)
+ -- INSERT INTO students (student_name, course, marks)
 -- VALUES
 -- ('Motu', 'Python', 85),
 -- ('Patlu', 'Python', 72),
 -- ('Raju', 'MERN', 90),
 -- ('Shyam', 'MERN', 65);
-
--- SELECT * FROM students;
-
--- CREATE OR REPLACE PROCEDURE add_student(
+ -- SELECT * FROM students;
+ -- CREATE OR REPLACE PROCEDURE add_student(
 --     p_name VARCHAR,
 --     p_course VARCHAR,
 --     p_marks INT
@@ -26,7 +23,27 @@
 --     VALUES (p_name, p_course, p_marks);
 -- END;
 -- $$;
-
--- CALL add_student('Chintu', 'Java', 88);
-
--- SELECT * FROM students;
+ -- CALL add_student('Chintu', 'Java', 88);
+ -- SELECT * FROM students;
+ -- Q1
+-- call add_student('Armna', 'Python', 90)
+-- Q2
+-- CREATE OR REPLACE FUNCTION get_students()
+-- RETURNS TABLE (
+--     student_id INT,
+--     student_name VARCHAR,
+--     course VARCHAR,
+--     marks INT
+-- )
+-- LANGUAGE plpgsql
+-- AS $$
+-- BEGIN
+--     RETURN QUERY
+--     SELECT
+--         s.student_id,
+--         s.student_name,
+--         s.course,
+--         s.marks
+--     FROM students s;
+-- END;
+-- $$;
