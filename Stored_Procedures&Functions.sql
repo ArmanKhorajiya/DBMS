@@ -14,3 +14,19 @@
 
 -- SELECT * FROM students;
 
+-- CREATE OR REPLACE PROCEDURE add_student(
+--     p_name VARCHAR,
+--     p_course VARCHAR,
+--     p_marks INT
+-- )
+-- LANGUAGE plpgsql
+-- AS $$
+-- BEGIN
+--     INSERT INTO students(student_name, course, marks)
+--     VALUES (p_name, p_course, p_marks);
+-- END;
+-- $$;
+
+-- CALL add_student('Chintu', 'Java', 88);
+
+-- SELECT * FROM students;
