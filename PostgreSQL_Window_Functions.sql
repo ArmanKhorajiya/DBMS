@@ -80,3 +80,73 @@
 --     ) AS rank
 -- FROM students;
 
+-- SELECT
+--     student_name,
+--     marks,
+--     LAG(marks) OVER(
+--         ORDER BY student_id
+--     ) AS previous_marks
+-- FROM students;
+
+-- SELECT
+--     student_name,
+--     marks,
+--     LEAD(marks) OVER(
+--         ORDER BY student_id
+--     ) AS next_marks
+-- FROM students;
+
+-- Q1:
+-- Display every student's name, marks, and overall average marks.
+-- select 
+-- student_name,marks,avg(marks) over() as average
+-- from students
+
+-- Q2:
+-- Display every student with a row number based on marks from highest to lowest
+-- select
+-- student_name,
+-- marks,
+-- row_number() over(
+--     order by marks desc
+-- ) as row_number
+-- from students
+
+-- Q3:
+-- Display every student along with the average marks of their course.
+-- select 
+-- student_name,
+-- course,
+-- marks,
+-- avg(marks) over()
+-- from students
+
+-- Q4:
+-- Display every student with their rank based on marks from highest to lowest.
+-- select
+-- student_name,
+-- course,
+-- marks,
+-- rank() over(
+--     order by marks desc
+-- )
+-- from students
+
+-- Q5:
+-- Display each student's marks along with the marks of the previous student based on student_id.
+-- select
+-- student_name,
+-- marks,
+-- lag(marks) over() as previous_marks
+-- from students
+
+-- Q6:
+-- Rank students separately inside each course based on marks from highest to lowest.
+SELECT
+    student_name,
+    course,
+    marks,
+    sum(marks) OVER(
+        PARTITION BY course
+    ) AS course_average
+FROM students;
