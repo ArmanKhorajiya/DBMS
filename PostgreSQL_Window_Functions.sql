@@ -23,3 +23,5 @@
 
 -- SELECT * FROM students;
 
+select avg(marks) as Avergae from students
+group by course
